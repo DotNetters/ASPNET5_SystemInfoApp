@@ -21,6 +21,7 @@ using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
 using Microsoft.Framework.Runtime;
 using ASPNET5SystemInfoApp.Models;
+using ASPNET5SystemInfoApp.Services;
 
 namespace ASPNET5SystemInfoApp
 {
@@ -83,6 +84,15 @@ namespace ASPNET5SystemInfoApp
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
+
+            // Configuración de los servicios que extraen la información del sistema dependiendo de la plataforma
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                services.AddTransient(typeof(ISystemInfoService), typeof(WindowsSystemInfoService));
+            else if (Environment.OSVersion.Platform == PlatformID.Unix)
+                services.AddTransient(typeof(ISystemInfoService), typeof(DebianSystemInfoService));
+            else
+                services.AddTransient(typeof(ISystemInfoService), typeof(FallbackSystemInfoService));
+
         }
 
         // Configure is called after ConfigureServices is called.

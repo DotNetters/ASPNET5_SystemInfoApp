@@ -1,7 +1,20 @@
-﻿@{
+﻿@model SystemInfoViewModel
+@{
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>Información del sistema <i>(proporcionada por <b>@Model.SystemInfoServiceName</b>)</i>:</p>
+<ul>
+    <li>Nombre de servidor: @Model.ServerName</li>
+    <li>Sistema operativo: @Model.OSVersion</li>
+</ul>
+
+<p>Software instalado:</p>
+<ul>
+    @foreach (var item in Model.InstalledSoftware)
+    {
+        <li>@item</li>
+    }
+</ul>
