@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "ASPNET5SystemInfoApp"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-ASPNET5SystemInfoApp-477b74c0-9298-473b-a57b-3c1b83cea1cf;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}
